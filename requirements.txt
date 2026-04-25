@@ -1,7 +1,0 @@
-pandas
-numpy
-scikit-learn
-xgboost==2.0.3
-lightgbm
-matplotlib
-seaborn
