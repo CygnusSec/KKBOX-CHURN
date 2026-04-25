@@ -2,15 +2,16 @@ version: "3.9"
 
 services:
   kkbox:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/cygnussec/kkbox-churn-kkbox:latest
     container_name: kkbox-jupyter
     ports:
       - "8888:8888"
     volumes:
       - ./data:/app/data
       - ./notebooks:/app/notebooks
-      - ./src:/app/src
-      - .:/app
     working_dir: /app
     tty: true
     stdin_open: true
