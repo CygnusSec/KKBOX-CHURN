@@ -15,3 +15,22 @@ services:
     working_dir: /app
     tty: true
     stdin_open: true
+    # ========== PERFORMANCE OPTIMIZATION ==========
+    # Increase memory and CPU limits for large datasets
+    deploy:
+      resources:
+        limits:
+          cpus: '6.0'      # Use up to 6 CPU cores
+          memory: 12G      # Maximum 12GB RAM (increased for user_logs)
+        reservations:
+          cpus: '2.0'      # Reserve at least 2 cores
+          memory: 6G       # Reserve at least 6GB RAM
+    # Increase shared memory for large datasets (prevents kernel crashes)
+    shm_size: '4gb'          # Increased to 4GB
+    # Environment variables for Jupyter optimization
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - PYTHONUNBUFFERED=1
+      # Increase data rate limits
+      - JUPYTER_IOPUB_DATA_RATE_LIMIT=10000000000
+      - JUPYTER_IOPUB_MSG_RATE_LIMIT=100000
